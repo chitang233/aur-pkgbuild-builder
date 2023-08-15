@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-SSH_PRIVATE_KEY=$1
-PKGNAME=$2
-
 # Install dependencies
 pacman -Syu --noconfirm git openssh base-devel
 
@@ -14,7 +11,7 @@ echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 cat > /home/builder/entrypoint.sh << EOF
 # Add the SSH key
 mkdir -p ~/.ssh
-echo "$SSH_PRIVATE_KEY" > ~/.ssh/private
+echo "${SSH_PRIVATE_KEY}" > ~/.ssh/private
 chmod 600 ~/.ssh/private
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/private
