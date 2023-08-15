@@ -1,4 +1,4 @@
-name: PKGBUILD Builder
+name: PKGBUILD Update Action
 description: Build and push new PKGBUILD to AUR
 
 branding:
