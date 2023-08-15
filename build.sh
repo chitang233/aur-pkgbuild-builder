@@ -17,12 +17,18 @@ git config --global user.name "GitHub Action"
 # Added aur.archlinux.org as a known host
 ssh-keyscan aur.archlinux.org >> ~/.ssh/known_hosts
 
+# Install paru
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si --noconfirm
+cd $HOME
+
 # Clone the repo
 git clone aur@aur.archlinux.org:${PKGNAME}.git
 cd ${PKGNAME}
 
 # Update the PKGBUILD
-makepkg -s
+makepkg -s --noconfirm
 rm .SRCINFO
 makepkg --printsrcinfo > .SRCINFO
 git add PKGBUILD .SRCINFO
