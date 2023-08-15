@@ -13,7 +13,6 @@ inputs:
   deploy_key:
     description: 'SSH private key for AUR'
     required: true
-    default: ${{ secrets.DEPLOY_KEY }}
   package_name:
     description: 'Package name'
     required: true
