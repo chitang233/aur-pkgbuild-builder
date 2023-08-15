@@ -4,6 +4,14 @@ set -e
 SSH_PRIVATE_KEY=$1
 PKGNAME=$2
 
+# Install dependencies
+pacman -Syu --noconfirm git openssh base-devel
+
+# Create a user
+useradd -G wheel -m -s /bin/bash builder
+echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+cat > /home/builder/entrypoint.sh << EOF
 # Add the SSH key
 mkdir -p ~/.ssh
 echo "$SSH_PRIVATE_KEY" > ~/.ssh/private
@@ -29,3 +37,7 @@ makepkg --printsrcinfo > .SRCINFO
 git add PKGBUILD .SRCINFO
 git commit -m "Update to $(cat PKGBUILD | grep pkgver= | cut -d '=' -f 2)"
 git push
+
+EOF
+
+su - builder -c "bash /home/builder/entrypoint.sh"
