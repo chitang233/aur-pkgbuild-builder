@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+SSH_PRIVATE_KEY=$1
+PKGNAME=$2
+
 # Install dependencies
 pacman -Syu --noconfirm git openssh base-devel
 
