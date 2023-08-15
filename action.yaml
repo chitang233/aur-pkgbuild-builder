@@ -1,5 +1,5 @@
-name: NekoRay Builder
-description: Build NekoRay and push new PKGBUILD to AUR
+name: PKGBUILD Builder
+description: Build and push new PKGBUILD to AUR
 
 branding:
   icon: 'upload-cloud'
