@@ -1,7 +1,8 @@
 FROM archlinux:latest
 
 COPY entrypoint.sh /entrypoint.sh
+COPY build.sh /build.sh
 
 RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh" "${{ inputs.deploy_key }}" "${{ inputs.package_name }}"]
+ENTRYPOINT ["/entrypoint.sh"]
